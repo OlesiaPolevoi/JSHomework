@@ -1,3 +1,4 @@
+"use strict";
 const title = "JS homework";
 const screens = "Простые, Сложные, Интерактивные";
 const screenPrice = 8;
