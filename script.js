@@ -1,10 +1,21 @@
 "use strict";
-const title = "JS homework";
-const screens = "Простые, Сложные, Интерактивные";
-const screenPrice = 8;
-const rollback = 28;
-const fullPrice = 30000000000;
-const adaptive = true;
+let title = prompt("Как называется ваш проект?");
+let screens = prompt(
+  "Какие типы экранов нужно разработать?",
+  "Простые, Сложные, Интерактивные"
+);
+let screenPrice = +prompt("Сколько будет стоить данная работа?", "12000");
+let adaptive = !!prompt("Нужен ли адаптив на сайте?", "true/false");
+
+let service1 = prompt("Какой дополнительный тип услуги нужен?");
+let servicePrice1 = +prompt("Сколько это будет стоить?");
+
+let service2 = prompt("Какой дополнительный тип услуги нужен?");
+let servicePrice2 = +prompt("Сколько это будет стоить?");
+
+let rollback = 28;
+
+let fullPrice = screenPrice + servicePrice1 + servicePrice2;
 
 console.log(typeof title);
 console.log(typeof fullPrice);
@@ -19,3 +30,16 @@ console.log(screens.split(" "));
 console.log(screens.toLowerCase().split(" "));
 
 console.log(fullPrice * (rollback / 100));
+
+let servicePercentPrice = fullPrice - rollback;
+console.log(Math.ceil(servicePercentPrice));
+
+if (fullPrice > 30000) {
+  console.log("Даем скидку в 10%");
+} else if (fullPrice >= 15000 && fullPrice <= 30000) {
+  console.log("Даем скидку в 5%");
+} else if (fullPrice < 15000 && fullPrice > 0) {
+  console.log("Скидка не предусмотрена");
+} else if (fullPrice <= 0) {
+  console.log("Что то пошло не так");
+}
