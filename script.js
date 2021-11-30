@@ -31,7 +31,7 @@ console.log(screens.toLowerCase().split(" "));
 
 console.log(fullPrice * (rollback / 100));
 
-let servicePercentPrice = fullPrice - rollback;
+let servicePercentPrice = fullPrice - fullPrice * (rollback / 100);
 console.log(Math.ceil(servicePercentPrice));
 
 if (fullPrice > 30000) {
