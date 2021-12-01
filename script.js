@@ -43,7 +43,7 @@ const getTitle = function (title) {
   return title.trim()[0].toUpperCase() + title.trim().slice(1);
 };
 const getServicePercentPrices = function (a, b) {
-  return a - b;
+  return a - a * (b / 100);
 };
 
 console.log(getTitle(title));
@@ -60,5 +60,15 @@ console.log(screens.split(" "));
 
 console.log(getRollbackMessage(fullPrice));
 
-servicePercentPrice = getServicePercentPrices(fullPrice, servicePercentPrice);
+servicePercentPrice = getServicePercentPrices(fullPrice, rollback);
+
 console.log(servicePercentPrice);
+
+//NOTE bring back Math.ceil
+// console.log(Math.ceil(servicePercentPrice));
+
+// console.log(screens.toLowerCase());
+// console.log(screens.split(" "));
+// console.log(screens.toLowerCase().split(" "));
+
+// console.log(fullPrice * (rollback / 100));
