@@ -15,29 +15,50 @@ let rollback = 28;
 let fullPrice = screenPrice + servicePrice1 + servicePrice2;
 let servicePercentPrice = fullPrice - fullPrice * (rollback / 100);
 
-if (fullPrice >= 30000) {
-  console.log("Даем скидку в 10%");
-} else if (fullPrice >= 15000 && fullPrice < 30000) {
-  console.log("Даем скидку в 5%");
-} else if (fullPrice < 15000 && fullPrice >= 0) {
-  console.log("Скидка не предусмотрена");
-} else {
-  console.log("Что то пошло не так");
+const showTypeOf = function (variable) {
+  console.log(variable, typeof variable);
+};
+
+const getRollbackMessage = function (price) {
+  if (price >= 30000) {
+    return "Даем скидку в 10%";
+  } else if (price >= 15000 && price < 30000) {
+    return "Даем скидку в 5%";
+  } else if (price < 15000 && price >= 0) {
+    return "Скидка не предусмотрена";
+  } else {
+    return "Что то пошло не так";
+  }
+};
+
+const getAllServicePrices = function (price1, price2) {
+  return price1 + price2;
+};
+
+function getFullPrice(price, serviceprices) {
+  return price + serviceprices;
 }
 
-console.log(typeof title);
-console.log(typeof screenPrice);
-console.log(typeof adaptive);
+const getTitle = function (title) {
+  return title.trim()[0].toUpperCase() + title.trim().slice(1);
+};
+const getServicePercentPrices = function (a, b) {
+  return a - b;
+};
 
-console.log(screens.length);
+console.log(getTitle(title));
+
+const allServicePrices = getAllServicePrices(servicePrice1, servicePrice2);
+
+fullPrice = getFullPrice(screenPrice, allServicePrices);
+
+showTypeOf(title);
+showTypeOf(screenPrice);
+showTypeOf(adaptive);
+
+console.log(screens.split(" "));
+
+console.log(getRollbackMessage(fullPrice));
+
+servicePercentPrice = getServicePercentPrices(fullPrice, servicePercentPrice);
 console.log(servicePercentPrice);
-
-console.log(`Стоимость верстки экранов ${screenPrice} юани.`);
-console.log("Стоимость разработки сайта" + " " + fullPrice + " " + "юани.");
-
-// console.log(screens.toLowerCase());
-// console.log(screens.split(" "));
-// console.log(screens.toLowerCase().split(" "));
-
-// console.log(fullPrice * (rollback / 100));
-// console.log(Math.ceil(servicePercentPrice));
