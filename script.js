@@ -62,13 +62,4 @@ console.log(getRollbackMessage(fullPrice));
 
 servicePercentPrice = getServicePercentPrices(fullPrice, rollback);
 
-console.log(servicePercentPrice);
-
-//NOTE bring back Math.ceil
-// console.log(Math.ceil(servicePercentPrice));
-
-// console.log(screens.toLowerCase());
-// console.log(screens.split(" "));
-// console.log(screens.toLowerCase().split(" "));
-
-// console.log(fullPrice * (rollback / 100));
+console.log(Math.ceil(servicePercentPrice));
