@@ -11,19 +11,20 @@ const appData = {
   servicePercentPrice: 0,
   service1: "",
   service2: "",
+
   asking: function () {
-    appData.title = prompt("Как называется ваш проект?", "Калькулятор верстки");
-    appData.screens = prompt(
+    this.title = prompt("Как называется ваш проект?", "Калькулятор верстки");
+    this.screens = prompt(
       "Какие типы экранов нужно разработать?",
       "Простые, сложные"
     );
 
     do {
-      appData.screenPrice = prompt("Сколько будет стоить данная работа?");
-    } while (!appData.isNumber(appData.screenPrice));
-    appData.screenPrice = +appData.screenPrice;
+      this.screenPrice = prompt("Сколько будет стоить данная работа?");
+    } while (!this.isNumber(this.screenPrice));
+    this.screenPrice = +this.screenPrice;
 
-    appData.adaptive = confirm("Нужен ли адаптив на сайте?");
+    this.adaptive = confirm("Нужен ли адаптив на сайте?");
   },
 
   isNumber: function (num) {
@@ -60,9 +61,7 @@ const appData = {
   },
 
   getTitle: function () {
-    return (
-      appData.title.trim()[0].toUpperCase() + appData.title.trim().slice(1)
-    );
+    return this.title.trim()[0].toUpperCase() + this.title.trim().slice(1);
   },
 
   getRollbackMessage: function (price) {
@@ -76,19 +75,24 @@ const appData = {
       return "Что то пошло не так";
     }
   },
+  start: function () {
+    this.asking();
+    this.allServicePrices = this.getAllServicePrices();
+    this.fullPrice = this.getFullPrice(this.screenPrice, this.allServicePrices);
+    this.servicePercentPrice = this.getServicePercentPrices(
+      this.fullPrice,
+      this.rollback
+    );
+    this.title = this.getTitle();
+    this.logger();
+  },
+  logger: function () {
+    console.log(this.fullPrice);
+    console.log(this.servicePercentPrice);
+    for (let key in this) {
+      console.log(key);
+    }
+  },
 };
 
-appData.asking();
-appData.allServicePrices = appData.getAllServicePrices();
-appData.fullPrice = appData.getFullPrice(
-  appData.screenPrice,
-  appData.allServicePrices
-);
-appData.servicePercentPrice = appData.getServicePercentPrices(
-  appData.fullPrice,
-  appData.rollback
-);
-appData.title = appData.getTitle();
-
-console.log(appData.fullPrice);
-console.log(appData.servicePercentPrice);
+appData.start();
