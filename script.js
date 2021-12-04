@@ -1,7 +1,7 @@
 "use strict";
 
 const appData = {
-  title: "",
+  title: "", //project ; title : project
   screens: "",
   screenPrice: 0,
   adaptive: true,
@@ -89,8 +89,9 @@ const appData = {
   logger: function () {
     console.log(this.fullPrice);
     console.log(this.servicePercentPrice);
+
     for (let key in this) {
-      console.log(key);
+      console.log(key, this[key]);
     }
   },
 };
