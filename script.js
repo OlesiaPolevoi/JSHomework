@@ -40,7 +40,7 @@ const appData = {
       if (i === 0) {
         appData.service1 = prompt("Какой дополнительный тип услуги нужен?");
       } else if (i === 1) {
-        appData.service1 = prompt("Какой дополнительный тип услуги нужен?");
+        appData.service2 = prompt("Какой дополнительный тип услуги нужен?");
       }
 
       do {
