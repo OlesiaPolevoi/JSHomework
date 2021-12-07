@@ -1,5 +1,32 @@
 "use strict";
 
+const theTitle = document.getElementsByTagName("h1");
+console.log(theTitle[0].innerHTML);
+
+const handlerBtn = document.getElementsByClassName("handler_btn");
+console.log(handlerBtn[0].innerHTML, handlerBtn[1].innerHTML);
+
+const plusSign = document.querySelector(".screen-btn");
+console.log(plusSign.innerHTML);
+
+const otherItemsNumber = document.querySelectorAll(".other-items.number");
+console.log(otherItemsNumber);
+
+const otherItemsPercent = document.querySelectorAll(".other-items.percent");
+console.log(otherItemsPercent);
+
+const rollbackInput = document.querySelector(".rollback input[type=range]");
+console.log(rollbackInput);
+
+const rollbackSpan = document.querySelector(".rollback span");
+console.log(rollbackSpan);
+
+const totalInput = document.getElementsByClassName("total-input");
+console.log(totalInput);
+
+let screenBlocks = document.querySelectorAll(".screen");
+console.log(screenBlocks);
+
 const appData = {
   title: "",
   screens: [],
@@ -105,4 +132,4 @@ const appData = {
   },
 };
 
-appData.start();
+// appData.start();
