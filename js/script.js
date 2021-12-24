@@ -35,11 +35,11 @@ const appData = {
   servicesNumber: {},
 
   init: function () {
-    appData.addTitle();
-    btnStart.addEventListener("click", appData.start);
-    buttonPlus.addEventListener("click", appData.addScreenBlock);
+    this.addTitle();
+    btnStart.addEventListener("click", this.start);
+    buttonPlus.addEventListener("click", this.addScreenBlock);
 
-    inputRange.addEventListener("input", appData.rollbackInput);
+    inputRange.addEventListener("input", this.rollbackInput);
   },
   isError: false,
 
@@ -53,11 +53,11 @@ const appData = {
 
     const newArr = [...dropdowns, ...inputs];
 
-    appData.isError = false;
+    this.isError = false;
 
     newArr.forEach((input) => {
       if (input.value === "") {
-        appData.isError = true;
+        this.isError = true;
       }
     });
   },
@@ -67,7 +67,6 @@ const appData = {
   },
   start: function () {
     appData.checkValues();
-
     if (appData.isError) {
       alert("complete empty fields");
     } else {
@@ -79,6 +78,8 @@ const appData = {
 
     // this.logger();
   },
+  //NOTE continue here
+
   showResults: function () {
     total.value = appData.screenPrice;
     totalCountOther.value =
@@ -175,4 +176,5 @@ const appData = {
   },
 };
 
+console.log(appData);
 appData.init();
