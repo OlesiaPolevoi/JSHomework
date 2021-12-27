@@ -36,8 +36,8 @@ const appData = {
 
   init: function () {
     this.addTitle();
-    btnStart.addEventListener("click", this.start);
-    btnReset.addEventListener("click", this.reset);
+    btnStart.addEventListener("click", this.start.bind(this));
+    btnReset.addEventListener("click", this.reset.bind(this));
     buttonPlus.addEventListener("click", this.addScreenBlock);
 
     inputRange.addEventListener("input", this.rollbackInput);
@@ -67,16 +67,16 @@ const appData = {
     document.title = title.textContent;
   },
   start: function () {
-    appData.checkValues();
-    if (appData.isError) {
+    this.checkValues();
+    if (this.isError) {
       alert("complete empty fields");
     } else {
-      appData.addScreens();
-      appData.addServices();
-      appData.addPrices();
-      appData.showResults();
-      appData.disableToggle(true);
-      appData.changeBtn();
+      this.addScreens();
+      this.addServices();
+      this.addPrices();
+      this.showResults();
+      this.disableToggle(true);
+      this.changeBtn();
     }
     // this.logger();
   },
@@ -84,7 +84,7 @@ const appData = {
   showResults: function () {
     total.value = this.screenPrice;
     totalCountOther.value =
-      appData.servicePricesPercent + this.servicePricesNumber;
+      this.servicePricesPercent + this.servicePricesNumber;
     fullTotalCount.value = this.fullPrice;
     totalCountRollback.value = this.servicePercentPrice;
     totalCount.value = this.rollbackDisplay;
@@ -166,15 +166,15 @@ const appData = {
   },
 
   logger: function () {
-    console.log(appData.fullPrice);
-    console.log(appData.servicePercentPrice);
-    console.log(appData.screens);
+    console.log(this.fullPrice);
+    console.log(this.servicePercentPrice);
+    console.log(this.screens);
   },
 
   rollbackInput: function (event) {
     inputRangeValue.textContent = event.target.value + "%";
 
-    appData.rollback = event.target.value;
+    this.rollback = event.target.value;
   },
   disableToggle: function (isDisabled) {
     const elemInput = document.querySelectorAll("input[type=text]");
@@ -223,23 +223,28 @@ const appData = {
     const rangeInput = rangeContainer.querySelector("input");
     const rangeSpan = rangeContainer.querySelector("span");
 
-    const total = document.getElementsByClassName("total-input")[0];
-    const totalCount = document.getElementsByClassName("total-input")[1];
-    const totalCountOther = document.getElementsByClassName("total-input")[2];
-    const fullTotalCount = document.getElementsByClassName("total-input")[3];
-    const totalCountRollback =
-      document.getElementsByClassName("total-input")[4];
-
     rangeInput.value = 0;
     rangeSpan.innerText = "0%";
     this.rollback = 0;
     this.rollbackDisplay = 0;
-    appData.disableToggle(false);
+    this.disableToggle(false);
     total.value = 0;
     totalCount.value = 0;
     totalCountOther.value = 0;
     fullTotalCount.value = 0;
     totalCountRollback.value = 0;
+
+    this.screens = [];
+    this.screenPrice = 0;
+    this.adaptive = true;
+    this.rollback = 0;
+    this.rollbackDisplay = 0;
+    this.servicePricesPercent = 0;
+    this.servicePricesNumber = 0;
+    this.fullPrice = 0;
+    this.servicePercentPrice = 0;
+    this.servicesPercent = {};
+    this.servicesNumber = {};
   },
 };
 
